@@ -1,4 +1,5 @@
 'use client';
+
 import { useGlobalState } from '@/app/context/globalProvider';
 
 import React from 'react';

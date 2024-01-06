@@ -2,13 +2,14 @@
 import Tasks from './components/Tasks/Tasks';
 import { useGlobalState } from './context/globalProvider';
 
-export default function Home() {
+const Home = () => {
   const { tasks } = useGlobalState();
 
   return (
     <Tasks
-    //title='All Tasks'
-    //tasks={tasks}
+      title='All Tasks'
+      tasks={tasks}
     />
   );
-}
+};
+export default Home;
