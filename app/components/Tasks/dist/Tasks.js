@@ -12,7 +12,7 @@ var TaskItem_1 = require("../TaskItem/TaskItem");
 var icons_1 = require("@/app/utils/icons");
 var Tasks = function (_a) {
     var title = _a.title, tasks = _a.tasks;
-    var _b = globalProvider_1.useGlobalState(), theme = _b.theme, isLoading = _b.isLoading;
+    var theme = globalProvider_1.useGlobalState().theme;
     return (react_1["default"].createElement(TaskStyled, { theme: theme },
         react_1["default"].createElement("h1", null, title),
         react_1["default"].createElement("div", { className: 'tasks grid' },

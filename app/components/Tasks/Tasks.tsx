@@ -12,7 +12,7 @@ interface Props {
 }
 
 const Tasks = ({ title, tasks }: Props) => {
-  const { theme, isLoading } = useGlobalState();
+  const { theme } = useGlobalState();
 
   return (
     <TaskStyled theme={theme}>
