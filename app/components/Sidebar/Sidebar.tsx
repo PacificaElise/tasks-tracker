@@ -9,7 +9,7 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Button from '../Button/Button';
 import { logout } from '@/app/utils/icons';
-import { useClerk, useUser } from '@clerk/nextjs';
+import { UserButton, useClerk, useUser } from '@clerk/nextjs';
 
 const Sidebar = () => {
   const { theme } = useGlobalState();
@@ -18,11 +18,11 @@ const Sidebar = () => {
 
   const { user } = useUser();
 
-  // const { firstName, lastName, imageUrl } = user || {
-  //   firstName: '',
-  //   lastName: '',
-  //   imageUrl: '' || '/profile.jpg',
-  // };
+  const { firstName, lastName, imageUrl } = user || {
+    firstName: '',
+    lastName: '',
+    imageUrl: '/profile.jpg',
+  };
 
   const router = useRouter();
   const pathname = usePathname();
@@ -36,17 +36,18 @@ const Sidebar = () => {
       <div className='profile'>
         <div className='profile-overlay'></div>
         <div className='image'>
-          <div className='image'>
-            <Image
-              width={70}
-              height={70}
-              src='/profile.jpg'
-              alt='profile'
-            />
-          </div>
+          <Image
+            width={70}
+            height={70}
+            src={imageUrl}
+            alt='avatar'
+          />
         </div>
-        <h1>
-          <h1 className='capitalize'>{/* {firstName} {lastName} */}</h1>
+        <div className='user-btn absolute z-20 top-0 w-full h-full'>
+          <UserButton />
+        </div>
+        <h1 className='capitalize'>
+          {firstName} {lastName}
         </h1>
       </div>
       <ul className='nav-items'>

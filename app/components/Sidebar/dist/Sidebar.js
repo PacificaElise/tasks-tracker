@@ -19,11 +19,11 @@ var Sidebar = function () {
     var theme = globalProvider_1.useGlobalState().theme;
     var signOut = nextjs_1.useClerk().signOut;
     var user = nextjs_1.useUser().user;
-    // const { firstName, lastName, imageUrl } = user || {
-    //   firstName: '',
-    //   lastName: '',
-    //   imageUrl: '' || '/profile.jpg',
-    // };
+    var _a = user || {
+        firstName: '',
+        lastName: '',
+        imageUrl: '/profile.jpg'
+    }, firstName = _a.firstName, lastName = _a.lastName, imageUrl = _a.imageUrl;
     var router = navigation_1.useRouter();
     var pathname = navigation_1.usePathname();
     var handleClick = function (link) {
@@ -33,10 +33,13 @@ var Sidebar = function () {
         react_1["default"].createElement("div", { className: 'profile' },
             react_1["default"].createElement("div", { className: 'profile-overlay' }),
             react_1["default"].createElement("div", { className: 'image' },
-                react_1["default"].createElement("div", { className: 'image' },
-                    react_1["default"].createElement(image_1["default"], { width: 70, height: 70, src: '/profile.jpg', alt: 'profile' }))),
-            react_1["default"].createElement("h1", null,
-                react_1["default"].createElement("h1", { className: 'capitalize' }))),
+                react_1["default"].createElement(image_1["default"], { width: 70, height: 70, src: imageUrl, alt: 'avatar' })),
+            react_1["default"].createElement("div", { className: 'user-btn absolute z-20 top-0 w-full h-full' },
+                react_1["default"].createElement(nextjs_1.UserButton, null)),
+            react_1["default"].createElement("h1", { className: 'capitalize' },
+                firstName,
+                " ",
+                lastName)),
         react_1["default"].createElement("ul", { className: 'nav-items' }, menu_1["default"].map(function (item) {
             var link = item.link;
             return (react_1["default"].createElement("li", { onClick: function () { return handleClick(link); }, className: "nav-item " + (pathname === link ? 'active' : ''), key: item.id },
