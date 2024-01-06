@@ -81,7 +81,6 @@ function POST(req) {
                     return [2 /*return*/, server_1.NextResponse.json(task)];
                 case 3:
                     error_1 = _b.sent();
-                    console.log(error_1);
                     return [2 /*return*/, server_1.NextResponse.json({ error: "Error creating task", status: 500 })];
                 case 4: return [2 /*return*/];
             }

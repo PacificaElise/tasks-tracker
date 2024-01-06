@@ -9,9 +9,20 @@ import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Button from '../Button/Button';
 import { logout } from '@/app/utils/icons';
+import { useClerk, useUser } from '@clerk/nextjs';
 
 const Sidebar = () => {
   const { theme } = useGlobalState();
+
+  const { signOut } = useClerk();
+
+  const { user } = useUser();
+
+  // const { firstName, lastName, imageUrl } = user || {
+  //   firstName: '',
+  //   lastName: '',
+  //   imageUrl: '' || '/profile.jpg',
+  // };
 
   const router = useRouter();
   const pathname = usePathname();
@@ -25,16 +36,17 @@ const Sidebar = () => {
       <div className='profile'>
         <div className='profile-overlay'></div>
         <div className='image'>
-          <Image
-            width={70}
-            height={70}
-            src='/profile.jpg'
-            alt='profile'
-          ></Image>
+          <div className='image'>
+            <Image
+              width={70}
+              height={70}
+              src='/profile.jpg'
+              alt='profile'
+            />
+          </div>
         </div>
         <h1>
-          <span>Tatiana</span>
-          <span>Petrova</span>
+          <h1 className='capitalize'>{/* {firstName} {lastName} */}</h1>
         </h1>
       </div>
       <ul className='nav-items'>
@@ -61,9 +73,9 @@ const Sidebar = () => {
           fw={'500'}
           fs={'1.2rem'}
           icon={logout}
-          // click={() => {
-          //   signOut(() => router.push("/signin"));
-          // }}
+          click={() => {
+            signOut(() => router.push('/signin'));
+          }}
         />
       </div>
     </SidebarStyled>

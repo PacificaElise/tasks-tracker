@@ -13,12 +13,8 @@ var ContextProvider = function (_a) {
         }, 250);
     }, []);
     if (!isReady) {
-        return null;
-        // (
-        //   <div className='w-full h-full flex items-center justify-center'>
-        //     <span className='loader'></span>
-        //   </div>
-        // );
+        return (react_1["default"].createElement("div", { className: 'w-full h-full flex items-center justify-center' },
+            react_1["default"].createElement("span", { className: 'loader' })));
     }
     return (react_1["default"].createElement(globalProvider_1.GlobalProvider, null,
         react_1["default"].createElement(react_hot_toast_1.Toaster, null),

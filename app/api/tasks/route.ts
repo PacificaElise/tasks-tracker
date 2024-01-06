@@ -39,9 +39,7 @@ export async function POST(req: Request) {
     });    
 
     return NextResponse.json(task);
-  } catch (error) {
-    console.log(error);
-    
+  } catch (error) {    
     return NextResponse.json({ error: "Error creating task", status: 500 });
   }
 }
