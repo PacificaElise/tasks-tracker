@@ -143,7 +143,7 @@ function PUT(req) {
                     return [2 /*return*/, server_1.NextResponse.json(task)];
                 case 3:
                     error_3 = _b.sent();
-                    return [2 /*return*/, server_1.NextResponse.json({ error: "Error deleting task", status: 500 })];
+                    return [2 /*return*/, server_1.NextResponse.json({ error: "Error updating task", status: 500 })];
                 case 4: return [2 /*return*/];
             }
         });

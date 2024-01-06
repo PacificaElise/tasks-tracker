@@ -93,6 +93,10 @@ export const GlobalProvider = ({ children }) => {
         completedTasks,
         importantTasks,
         incompleteTasks,
+        updateTask,
+        modal,
+        openModal,
+        closeModal,
       }}
     >
       <GlobalUpdateContext.Provider value={{}}>

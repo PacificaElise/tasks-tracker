@@ -5,7 +5,7 @@ import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 import styled from 'styled-components';
 import Button from '../Button/Button';
-import { add, plus } from '@/app/utils/icons';
+import { add } from '@/app/utils/icons';
 
 function CreateContent() {
   const [title, setTitle] = useState('');
@@ -80,7 +80,7 @@ function CreateContent() {
           value={title}
           name='title'
           onChange={handleChange('title')}
-          placeholder='e.g, Watch a video from Fireship.'
+          placeholder='e.g, Next.js Auth'
         />
       </div>
       <div className='input-control'>
@@ -91,7 +91,7 @@ function CreateContent() {
           name='description'
           id='description'
           rows={4}
-          placeholder='e.g, Watch a video about Next.js Auth'
+          placeholder='e.g, Learn Next.js Auth'
         ></textarea>
       </div>
       <div className='input-control'>
@@ -126,8 +126,7 @@ function CreateContent() {
       </div>
 
       <div className='submit-btn flex justify-end'>
-        <button type='submit'>Create Task</button>
-        {/* <Button
+        <Button
           type='submit'
           name='Create Task'
           icon={add}
@@ -135,8 +134,8 @@ function CreateContent() {
           borderRad={'0.8rem'}
           fw={'500'}
           fs={'1.2rem'}
-          background={'rgb(0, 163, 255)'}
-        /> */}
+          background={'#27ae60'}
+        />
       </div>
     </CreateContentStyled>
   );

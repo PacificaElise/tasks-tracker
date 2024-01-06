@@ -1,8 +1,8 @@
 'use client';
+
 import { useGlobalState } from '@/app/context/globalProvider';
 import React from 'react';
 import styled from 'styled-components';
-
 interface Props {
   content: React.ReactNode;
 }

@@ -46,6 +46,8 @@ var axios_1 = require("axios");
 var react_1 = require("react");
 var react_hot_toast_1 = require("react-hot-toast");
 var styled_components_1 = require("styled-components");
+var Button_1 = require("../Button/Button");
+var icons_1 = require("@/app/utils/icons");
 function CreateContent() {
     var _this = this;
     var _a = react_1.useState(''), title = _a[0], setTitle = _a[1];
@@ -115,10 +117,10 @@ function CreateContent() {
         react_1["default"].createElement("h1", null, "Create a Task"),
         react_1["default"].createElement("div", { className: 'input-control' },
             react_1["default"].createElement("label", { htmlFor: 'title' }, "Title"),
-            react_1["default"].createElement("input", { type: 'text', id: 'title', value: title, name: 'title', onChange: handleChange('title'), placeholder: 'e.g, Watch a video from Fireship.' })),
+            react_1["default"].createElement("input", { type: 'text', id: 'title', value: title, name: 'title', onChange: handleChange('title'), placeholder: 'e.g, Next.js Auth' })),
         react_1["default"].createElement("div", { className: 'input-control' },
             react_1["default"].createElement("label", { htmlFor: 'description' }, "Description"),
-            react_1["default"].createElement("textarea", { value: description, onChange: handleChange('description'), name: 'description', id: 'description', rows: 4, placeholder: 'e.g, Watch a video about Next.js Auth' })),
+            react_1["default"].createElement("textarea", { value: description, onChange: handleChange('description'), name: 'description', id: 'description', rows: 4, placeholder: 'e.g, Learn Next.js Auth' })),
         react_1["default"].createElement("div", { className: 'input-control' },
             react_1["default"].createElement("label", { htmlFor: 'date' }, "Date"),
             react_1["default"].createElement("input", { value: date, onChange: handleChange('date'), type: 'date', name: 'date', id: 'date' })),
@@ -129,7 +131,7 @@ function CreateContent() {
             react_1["default"].createElement("label", { htmlFor: 'important' }, "Toggle Important"),
             react_1["default"].createElement("input", { value: important.toString(), onChange: handleChange('important'), type: 'checkbox', name: 'important', id: 'important' })),
         react_1["default"].createElement("div", { className: 'submit-btn flex justify-end' },
-            react_1["default"].createElement("button", { type: 'submit' }, "Create Task"))));
+            react_1["default"].createElement(Button_1["default"], { type: 'submit', name: 'Create Task', icon: icons_1.add, padding: '0.8rem 2rem', borderRad: '0.8rem', fw: '500', fs: '1.2rem', background: '#27ae60' }))));
 }
 var CreateContentStyled = styled_components_1["default"].form(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  > h1 {\n    font-size: clamp(1.2rem, 5vw, 1.6rem);\n    font-weight: 600;\n  }\n\n  color: ", ";\n\n  .input-control {\n    position: relative;\n    margin: 1.6rem 0;\n    font-weight: 500;\n\n    @media screen and (max-width: 450px) {\n      margin: 1rem 0;\n    }\n\n    label {\n      margin-bottom: 0.5rem;\n      display: inline-block;\n      font-size: clamp(0.9rem, 5vw, 1.2rem);\n\n      span {\n        color: ", ";\n      }\n    }\n\n    input,\n    textarea {\n      width: 100%;\n      padding: 1rem;\n\n      resize: none;\n      background-color: ", ";\n      color: ", ";\n      border-radius: 0.5rem;\n    }\n  }\n\n  .submit-btn button {\n    transition: all 0.35s ease-in-out;\n\n    @media screen and (max-width: 500px) {\n      font-size: 0.9rem !important;\n      padding: 0.6rem 1rem !important;\n\n      i {\n        font-size: 1.2rem !important;\n        margin-right: 0.5rem !important;\n      }\n    }\n\n    i {\n      color: ", ";\n    }\n\n    &:hover {\n      background: ", " !important;\n      color: ", " !important;\n    }\n  }\n\n  .toggler {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n\n    cursor: pointer;\n\n    label {\n      flex: 1;\n    }\n\n    input {\n      width: initial;\n    }\n  }\n"], ["\n  > h1 {\n    font-size: clamp(1.2rem, 5vw, 1.6rem);\n    font-weight: 600;\n  }\n\n  color: ", ";\n\n  .input-control {\n    position: relative;\n    margin: 1.6rem 0;\n    font-weight: 500;\n\n    @media screen and (max-width: 450px) {\n      margin: 1rem 0;\n    }\n\n    label {\n      margin-bottom: 0.5rem;\n      display: inline-block;\n      font-size: clamp(0.9rem, 5vw, 1.2rem);\n\n      span {\n        color: ", ";\n      }\n    }\n\n    input,\n    textarea {\n      width: 100%;\n      padding: 1rem;\n\n      resize: none;\n      background-color: ", ";\n      color: ", ";\n      border-radius: 0.5rem;\n    }\n  }\n\n  .submit-btn button {\n    transition: all 0.35s ease-in-out;\n\n    @media screen and (max-width: 500px) {\n      font-size: 0.9rem !important;\n      padding: 0.6rem 1rem !important;\n\n      i {\n        font-size: 1.2rem !important;\n        margin-right: 0.5rem !important;\n      }\n    }\n\n    i {\n      color: ", ";\n    }\n\n    &:hover {\n      background: ", " !important;\n      color: ", " !important;\n    }\n  }\n\n  .toggler {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n\n    cursor: pointer;\n\n    label {\n      flex: 1;\n    }\n\n    input {\n      width: initial;\n    }\n  }\n"])), function (props) { return props.theme.colorGrey1; }, function (props) { return props.theme.colorGrey3; }, function (props) { return props.theme.colorGreyDark; }, function (props) { return props.theme.colorGrey2; }, function (props) { return props.theme.colorGrey0; }, function (props) { return props.theme.colorPrimaryGreen; }, function (props) { return props.theme.colorWhite; });
 exports["default"] = CreateContent;

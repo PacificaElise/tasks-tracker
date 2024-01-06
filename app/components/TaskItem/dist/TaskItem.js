@@ -12,13 +12,25 @@ var styled_components_1 = require("styled-components");
 var formatDate_1 = require("@/app/utils/formatDate");
 var TaskItem = function (_a) {
     var title = _a.title, description = _a.description, date = _a.date, isCompleted = _a.isCompleted, id = _a.id;
-    var _b = globalProvider_1.useGlobalState(), theme = _b.theme, deleteTask = _b.deleteTask;
+    var _b = globalProvider_1.useGlobalState(), theme = _b.theme, deleteTask = _b.deleteTask, updateTask = _b.updateTask;
     return (react_1["default"].createElement(TaskItemStyled, { theme: theme },
         react_1["default"].createElement("h1", null, title),
         react_1["default"].createElement("p", null, description),
         react_1["default"].createElement("p", { className: 'date' }, formatDate_1["default"](date)),
         react_1["default"].createElement("div", { className: 'task-footer' },
-            isCompleted ? (react_1["default"].createElement("button", { className: 'completed' }, "Completed")) : (react_1["default"].createElement("button", { className: 'incomplete' }, "Incomplete")),
+            isCompleted ? (react_1["default"].createElement("button", { className: 'completed', onClick: function () {
+                    var task = {
+                        id: id,
+                        isCompleted: !isCompleted
+                    };
+                    updateTask(task);
+                } }, "Completed")) : (react_1["default"].createElement("button", { className: 'incomplete', onClick: function () {
+                    var task = {
+                        id: id,
+                        isCompleted: !isCompleted
+                    };
+                    updateTask(task);
+                } }, "Incomplete")),
             react_1["default"].createElement("button", { className: 'edit' }, icons_1.edit),
             react_1["default"].createElement("button", { className: 'delete', onClick: function () {
                     deleteTask(id);

@@ -8,16 +8,19 @@ exports.__esModule = true;
 var globalProvider_1 = require("@/app/context/globalProvider");
 var react_1 = require("react");
 var styled_components_1 = require("styled-components");
+var CreateContent_1 = require("../Modals/CreateContent");
 var TaskItem_1 = require("../TaskItem/TaskItem");
 var icons_1 = require("@/app/utils/icons");
+var Modal_1 = require("../Modals/Modal");
 var Tasks = function (_a) {
     var title = _a.title, tasks = _a.tasks;
-    var theme = globalProvider_1.useGlobalState().theme;
+    var _b = globalProvider_1.useGlobalState(), theme = _b.theme, openModal = _b.openModal, modal = _b.modal;
     return (react_1["default"].createElement(TaskStyled, { theme: theme },
+        modal && react_1["default"].createElement(Modal_1["default"], { content: react_1["default"].createElement(CreateContent_1["default"], null) }),
         react_1["default"].createElement("h1", null, title),
         react_1["default"].createElement("div", { className: 'tasks grid' },
             tasks.map(function (task) { return (react_1["default"].createElement(TaskItem_1["default"], { key: task.id, title: task.title, description: task.description, date: task.date, isCompleted: task.isCompleted, id: task.id })); }),
-            react_1["default"].createElement("button", { className: 'create-task' },
+            react_1["default"].createElement("button", { className: 'create-task', onClick: openModal },
                 icons_1.add,
                 "Add New Task"))));
 };
