@@ -79,7 +79,7 @@ function CreateContent() {
                 break;
         }
     }; };
-    console.log(choosenTask);
+    console.log(choosenTask.isCompleted);
     var handleSubmit = function (e) { return __awaiter(_this, void 0, void 0, function () {
         var task, task, res, error_1;
         return __generator(this, function (_a) {
@@ -96,7 +96,6 @@ function CreateContent() {
                         isImportant: important
                     };
                     updateTask(task);
-                    console.log(task);
                     closeModal();
                     finishEdit();
                     return [3 /*break*/, 5];
@@ -145,10 +144,10 @@ function CreateContent() {
             react_1["default"].createElement("input", { value: date, onChange: handleChange('date'), type: 'date', name: 'date', id: 'date' })),
         react_1["default"].createElement("div", { className: 'input-control toggler' },
             react_1["default"].createElement("label", { htmlFor: 'completed' }, "Toggle Completed"),
-            react_1["default"].createElement("input", { value: completed, onChange: handleChange('completed'), type: 'checkbox', name: 'completed', id: 'completed' })),
+            react_1["default"].createElement("input", { checked: completed, onChange: handleChange('completed'), type: 'checkbox', name: 'completed', id: 'completed' })),
         react_1["default"].createElement("div", { className: 'input-control toggler' },
             react_1["default"].createElement("label", { htmlFor: 'important' }, "Toggle Important"),
-            react_1["default"].createElement("input", { value: important, onChange: handleChange('important'), type: 'checkbox', name: 'important', id: 'important' })),
+            react_1["default"].createElement("input", { checked: important, onChange: handleChange('important'), type: 'checkbox', name: 'important', id: 'important' })),
         react_1["default"].createElement("div", { className: 'submit-btn flex justify-end' },
             react_1["default"].createElement(Button_1["default"], { type: 'submit', name: edit ? 'Edit Task' : 'Create Task', icon: icons_1.add, padding: '0.8rem 2rem', borderRad: '0.8rem', fw: '500', fs: '1.2rem', background: theme.colorPrimary }))));
 }

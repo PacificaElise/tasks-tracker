@@ -49,7 +49,7 @@ function CreateContent() {
     }
   };
 
-  console.log(choosenTask);
+  console.log(choosenTask.isCompleted);
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
@@ -64,7 +64,6 @@ function CreateContent() {
         isImportant: important,
       };
       updateTask(task);
-      console.log(task);
       closeModal();
       finishEdit();
     } else {
@@ -137,7 +136,7 @@ function CreateContent() {
       <div className='input-control toggler'>
         <label htmlFor='completed'>Toggle Completed</label>
         <input
-          value={completed}
+          checked={completed}
           onChange={handleChange('completed')}
           type='checkbox'
           name='completed'
@@ -147,7 +146,7 @@ function CreateContent() {
       <div className='input-control toggler'>
         <label htmlFor='important'>Toggle Important</label>
         <input
-          value={important}
+          checked={important}
           onChange={handleChange('important')}
           type='checkbox'
           name='important'
