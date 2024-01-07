@@ -134,7 +134,7 @@ function CreateContent() {
           borderRad={'0.8rem'}
           fw={'500'}
           fs={'1.2rem'}
-          background={'#27ae60'}
+          background={theme.colorPrimary}
         />
       </div>
     </CreateContentStyled>
@@ -181,7 +181,7 @@ const CreateContentStyled = styled.form`
   }
 
   .submit-btn button {
-    transition: all 0.35s ease-in-out;
+    transition: all 0.3s ease-in-out;
 
     @media screen and (max-width: 500px) {
       font-size: 0.9rem !important;
@@ -198,7 +198,7 @@ const CreateContentStyled = styled.form`
     }
 
     &:hover {
-      background: ${(props) => props.theme.colorPrimaryGreen} !important;
+      background: ${(props) => props.theme.colorPrimary2} !important;
       color: ${(props) => props.theme.colorWhite} !important;
     }
   }
