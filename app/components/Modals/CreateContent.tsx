@@ -8,13 +8,24 @@ import Button from '../Button/Button';
 import { add } from '@/app/utils/icons';
 
 function CreateContent() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [date, setDate] = useState('');
-  const [completed, setCompleted] = useState(false);
-  const [important, setImportant] = useState(false);
+  const {
+    tasks,
+    theme,
+    allTasks,
+    closeModal,
+    edit,
+    finishEdit,
+    updateTask,
+    ID,
+  } = useGlobalState();
+  // @ts-ignore
+  const choosenTask = tasks.find((task) => task.id === ID);
 
-  const { theme, allTasks, closeModal } = useGlobalState();
+  const [title, setTitle] = useState(choosenTask?.title);
+  const [description, setDescription] = useState(choosenTask?.description);
+  const [date, setDate] = useState(choosenTask?.date);
+  const [completed, setCompleted] = useState(choosenTask?.isCompleted);
+  const [important, setImportant] = useState(choosenTask?.isImportant);
 
   const handleChange = (name: string) => (e: any) => {
     switch (name) {
@@ -38,31 +49,50 @@ function CreateContent() {
     }
   };
 
+  console.log(choosenTask);
+
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
-    const task = {
-      title,
-      description,
-      date,
-      completed,
-      important,
-    };
+    if (edit) {
+      const task = {
+        id: ID,
+        title: title,
+        description: description,
+        date: date,
+        isCompleted: completed,
+        isImportant: important,
+      };
+      updateTask(task);
+      console.log(task);
+      closeModal();
+      finishEdit();
+    } else {
+      const task = {
+        title,
+        description,
+        date,
+        completed,
+        important,
+      };
+      try {
+        const res = await axios.post('/api/tasks', task);
 
-    try {
-      const res = await axios.post('/api/tasks', task);
+        if (res.data.error) {
+          toast.error(res.data.error);
+        }
 
-      if (res.data.error) {
-        toast.error(res.data.error);
+        if (!res.data.error) {
+          toast.success(
+            edit ? 'Task updated successfully' : 'Task created successfully'
+          );
+          allTasks();
+          closeModal();
+          finishEdit();
+        }
+      } catch (error) {
+        toast.error('Something went wrong');
       }
-
-      if (!res.data.error) {
-        toast.success('Task created successfully.');
-        allTasks();
-        closeModal();
-      }
-    } catch (error) {
-      toast.error('Something went wrong.');
     }
   };
 
@@ -107,7 +137,7 @@ function CreateContent() {
       <div className='input-control toggler'>
         <label htmlFor='completed'>Toggle Completed</label>
         <input
-          value={completed.toString()}
+          value={completed}
           onChange={handleChange('completed')}
           type='checkbox'
           name='completed'
@@ -117,7 +147,7 @@ function CreateContent() {
       <div className='input-control toggler'>
         <label htmlFor='important'>Toggle Important</label>
         <input
-          value={important.toString()}
+          value={important}
           onChange={handleChange('important')}
           type='checkbox'
           name='important'
@@ -128,7 +158,7 @@ function CreateContent() {
       <div className='submit-btn flex justify-end'>
         <Button
           type='submit'
-          name='Create Task'
+          name={edit ? 'Edit Task' : 'Create Task'}
           icon={add}
           padding={'0.8rem 2rem'}
           borderRad={'0.8rem'}

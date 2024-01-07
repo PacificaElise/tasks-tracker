@@ -118,7 +118,7 @@ function GET(req) {
 exports.GET = GET;
 function PUT(req) {
     return __awaiter(this, void 0, void 0, function () {
-        var userId, _a, isCompleted, id, task, error_3;
+        var userId, _a, title, description, date, isImportant, isCompleted, id, task, error_3;
         return __generator(this, function (_b) {
             switch (_b.label) {
                 case 0:
@@ -126,7 +126,7 @@ function PUT(req) {
                     userId = nextjs_1.auth().userId;
                     return [4 /*yield*/, req.json()];
                 case 1:
-                    _a = _b.sent(), isCompleted = _a.isCompleted, id = _a.id;
+                    _a = _b.sent(), title = _a.title, description = _a.description, date = _a.date, isImportant = _a.isImportant, isCompleted = _a.isCompleted, id = _a.id;
                     if (!userId) {
                         return [2 /*return*/, server_1.NextResponse.json({ error: "Unauthorized", status: 401 })];
                     }
@@ -135,6 +135,10 @@ function PUT(req) {
                                 id: id
                             },
                             data: {
+                                title: title,
+                                description: description,
+                                date: date,
+                                isImportant: isImportant,
                                 isCompleted: isCompleted
                             }
                         })];

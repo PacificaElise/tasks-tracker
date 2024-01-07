@@ -4,6 +4,7 @@ import { edit, trash } from '@/app/utils/icons';
 import React from 'react';
 import styled from 'styled-components';
 import formatDate from '@/app/utils/formatDate';
+import axios from 'axios';
 
 interface Props {
   title: string;
@@ -14,7 +15,8 @@ interface Props {
 }
 
 const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
-  const { theme, deleteTask, updateTask } = useGlobalState();
+  const { theme, deleteTask, updateTask, startEdit, openModal, setID } =
+    useGlobalState();
 
   return (
     <TaskItemStyled theme={theme}>
@@ -51,7 +53,16 @@ const TaskItem = ({ title, description, date, isCompleted, id }: Props) => {
             Incomplete
           </button>
         )}
-        <button className='edit'>{edit}</button>
+        <button
+          className='edit'
+          onClick={() => {
+            startEdit();
+            setID(id);
+            openModal();
+          }}
+        >
+          {edit}
+        </button>
         <button
           className='delete'
           onClick={() => {

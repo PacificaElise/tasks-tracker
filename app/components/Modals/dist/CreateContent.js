@@ -50,12 +50,14 @@ var Button_1 = require("../Button/Button");
 var icons_1 = require("@/app/utils/icons");
 function CreateContent() {
     var _this = this;
-    var _a = react_1.useState(''), title = _a[0], setTitle = _a[1];
-    var _b = react_1.useState(''), description = _b[0], setDescription = _b[1];
-    var _c = react_1.useState(''), date = _c[0], setDate = _c[1];
-    var _d = react_1.useState(false), completed = _d[0], setCompleted = _d[1];
-    var _e = react_1.useState(false), important = _e[0], setImportant = _e[1];
-    var _f = globalProvider_1.useGlobalState(), theme = _f.theme, allTasks = _f.allTasks, closeModal = _f.closeModal;
+    var _a = globalProvider_1.useGlobalState(), tasks = _a.tasks, theme = _a.theme, allTasks = _a.allTasks, closeModal = _a.closeModal, edit = _a.edit, finishEdit = _a.finishEdit, updateTask = _a.updateTask, ID = _a.ID;
+    // @ts-ignore
+    var choosenTask = tasks.find(function (task) { return task.id === ID; });
+    var _b = react_1.useState(choosenTask === null || choosenTask === void 0 ? void 0 : choosenTask.title), title = _b[0], setTitle = _b[1];
+    var _c = react_1.useState(choosenTask === null || choosenTask === void 0 ? void 0 : choosenTask.description), description = _c[0], setDescription = _c[1];
+    var _d = react_1.useState(choosenTask === null || choosenTask === void 0 ? void 0 : choosenTask.date), date = _d[0], setDate = _d[1];
+    var _e = react_1.useState(choosenTask === null || choosenTask === void 0 ? void 0 : choosenTask.isCompleted), completed = _e[0], setCompleted = _e[1];
+    var _f = react_1.useState(choosenTask === null || choosenTask === void 0 ? void 0 : choosenTask.isImportant), important = _f[0], setImportant = _f[1];
     var handleChange = function (name) { return function (e) {
         switch (name) {
             case 'title':
@@ -77,12 +79,28 @@ function CreateContent() {
                 break;
         }
     }; };
+    console.log(choosenTask);
     var handleSubmit = function (e) { return __awaiter(_this, void 0, void 0, function () {
-        var task, res, error_1;
+        var task, task, res, error_1;
         return __generator(this, function (_a) {
             switch (_a.label) {
                 case 0:
                     e.preventDefault();
+                    if (!edit) return [3 /*break*/, 1];
+                    task = {
+                        id: ID,
+                        title: title,
+                        description: description,
+                        date: date,
+                        isCompleted: completed,
+                        isImportant: important
+                    };
+                    updateTask(task);
+                    console.log(task);
+                    closeModal();
+                    finishEdit();
+                    return [3 /*break*/, 5];
+                case 1:
                     task = {
                         title: title,
                         description: description,
@@ -90,26 +108,27 @@ function CreateContent() {
                         completed: completed,
                         important: important
                     };
-                    _a.label = 1;
-                case 1:
-                    _a.trys.push([1, 3, , 4]);
-                    return [4 /*yield*/, axios_1["default"].post('/api/tasks', task)];
+                    _a.label = 2;
                 case 2:
+                    _a.trys.push([2, 4, , 5]);
+                    return [4 /*yield*/, axios_1["default"].post('/api/tasks', task)];
+                case 3:
                     res = _a.sent();
                     if (res.data.error) {
                         react_hot_toast_1["default"].error(res.data.error);
                     }
                     if (!res.data.error) {
-                        react_hot_toast_1["default"].success('Task created successfully.');
+                        react_hot_toast_1["default"].success(edit ? 'Task updated successfully' : 'Task created successfully');
                         allTasks();
                         closeModal();
+                        finishEdit();
                     }
-                    return [3 /*break*/, 4];
-                case 3:
+                    return [3 /*break*/, 5];
+                case 4:
                     error_1 = _a.sent();
-                    react_hot_toast_1["default"].error('Something went wrong.');
-                    return [3 /*break*/, 4];
-                case 4: return [2 /*return*/];
+                    react_hot_toast_1["default"].error('Something went wrong');
+                    return [3 /*break*/, 5];
+                case 5: return [2 /*return*/];
             }
         });
     }); };
@@ -126,12 +145,12 @@ function CreateContent() {
             react_1["default"].createElement("input", { value: date, onChange: handleChange('date'), type: 'date', name: 'date', id: 'date' })),
         react_1["default"].createElement("div", { className: 'input-control toggler' },
             react_1["default"].createElement("label", { htmlFor: 'completed' }, "Toggle Completed"),
-            react_1["default"].createElement("input", { value: completed.toString(), onChange: handleChange('completed'), type: 'checkbox', name: 'completed', id: 'completed' })),
+            react_1["default"].createElement("input", { value: completed, onChange: handleChange('completed'), type: 'checkbox', name: 'completed', id: 'completed' })),
         react_1["default"].createElement("div", { className: 'input-control toggler' },
             react_1["default"].createElement("label", { htmlFor: 'important' }, "Toggle Important"),
-            react_1["default"].createElement("input", { value: important.toString(), onChange: handleChange('important'), type: 'checkbox', name: 'important', id: 'important' })),
+            react_1["default"].createElement("input", { value: important, onChange: handleChange('important'), type: 'checkbox', name: 'important', id: 'important' })),
         react_1["default"].createElement("div", { className: 'submit-btn flex justify-end' },
-            react_1["default"].createElement(Button_1["default"], { type: 'submit', name: 'Create Task', icon: icons_1.add, padding: '0.8rem 2rem', borderRad: '0.8rem', fw: '500', fs: '1.2rem', background: theme.colorPrimary }))));
+            react_1["default"].createElement(Button_1["default"], { type: 'submit', name: edit ? 'Edit Task' : 'Create Task', icon: icons_1.add, padding: '0.8rem 2rem', borderRad: '0.8rem', fw: '500', fs: '1.2rem', background: theme.colorPrimary }))));
 }
 var CreateContentStyled = styled_components_1["default"].form(templateObject_1 || (templateObject_1 = __makeTemplateObject(["\n  > h1 {\n    font-size: clamp(1.2rem, 5vw, 1.6rem);\n    font-weight: 600;\n  }\n\n  color: ", ";\n\n  .input-control {\n    position: relative;\n    margin: 1.6rem 0;\n    font-weight: 500;\n\n    @media screen and (max-width: 450px) {\n      margin: 1rem 0;\n    }\n\n    label {\n      margin-bottom: 0.5rem;\n      display: inline-block;\n      font-size: clamp(0.9rem, 5vw, 1.2rem);\n\n      span {\n        color: ", ";\n      }\n    }\n\n    input,\n    textarea {\n      width: 100%;\n      padding: 1rem;\n\n      resize: none;\n      background-color: ", ";\n      color: ", ";\n      border-radius: 0.5rem;\n    }\n  }\n\n  .submit-btn button {\n    transition: all 0.3s ease-in-out;\n\n    @media screen and (max-width: 500px) {\n      font-size: 0.9rem !important;\n      padding: 0.6rem 1rem !important;\n\n      i {\n        font-size: 1.2rem !important;\n        margin-right: 0.5rem !important;\n      }\n    }\n\n    i {\n      color: ", ";\n    }\n\n    &:hover {\n      background: ", " !important;\n      color: ", " !important;\n    }\n  }\n\n  .toggler {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n\n    cursor: pointer;\n\n    label {\n      flex: 1;\n    }\n\n    input {\n      width: initial;\n    }\n  }\n"], ["\n  > h1 {\n    font-size: clamp(1.2rem, 5vw, 1.6rem);\n    font-weight: 600;\n  }\n\n  color: ", ";\n\n  .input-control {\n    position: relative;\n    margin: 1.6rem 0;\n    font-weight: 500;\n\n    @media screen and (max-width: 450px) {\n      margin: 1rem 0;\n    }\n\n    label {\n      margin-bottom: 0.5rem;\n      display: inline-block;\n      font-size: clamp(0.9rem, 5vw, 1.2rem);\n\n      span {\n        color: ", ";\n      }\n    }\n\n    input,\n    textarea {\n      width: 100%;\n      padding: 1rem;\n\n      resize: none;\n      background-color: ", ";\n      color: ", ";\n      border-radius: 0.5rem;\n    }\n  }\n\n  .submit-btn button {\n    transition: all 0.3s ease-in-out;\n\n    @media screen and (max-width: 500px) {\n      font-size: 0.9rem !important;\n      padding: 0.6rem 1rem !important;\n\n      i {\n        font-size: 1.2rem !important;\n        margin-right: 0.5rem !important;\n      }\n    }\n\n    i {\n      color: ", ";\n    }\n\n    &:hover {\n      background: ", " !important;\n      color: ", " !important;\n    }\n  }\n\n  .toggler {\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n\n    cursor: pointer;\n\n    label {\n      flex: 1;\n    }\n\n    input {\n      width: initial;\n    }\n  }\n"])), function (props) { return props.theme.colorGrey1; }, function (props) { return props.theme.colorGrey3; }, function (props) { return props.theme.colorGreyDark; }, function (props) { return props.theme.colorGrey2; }, function (props) { return props.theme.colorGrey0; }, function (props) { return props.theme.colorPrimary2; }, function (props) { return props.theme.colorWhite; });
 exports["default"] = CreateContent;

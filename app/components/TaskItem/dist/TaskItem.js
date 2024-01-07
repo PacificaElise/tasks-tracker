@@ -12,7 +12,7 @@ var styled_components_1 = require("styled-components");
 var formatDate_1 = require("@/app/utils/formatDate");
 var TaskItem = function (_a) {
     var title = _a.title, description = _a.description, date = _a.date, isCompleted = _a.isCompleted, id = _a.id;
-    var _b = globalProvider_1.useGlobalState(), theme = _b.theme, deleteTask = _b.deleteTask, updateTask = _b.updateTask;
+    var _b = globalProvider_1.useGlobalState(), theme = _b.theme, deleteTask = _b.deleteTask, updateTask = _b.updateTask, startEdit = _b.startEdit, openModal = _b.openModal, setID = _b.setID;
     return (react_1["default"].createElement(TaskItemStyled, { theme: theme },
         react_1["default"].createElement("h1", null, title),
         react_1["default"].createElement("p", null, description),
@@ -31,7 +31,11 @@ var TaskItem = function (_a) {
                     };
                     updateTask(task);
                 } }, "Incomplete")),
-            react_1["default"].createElement("button", { className: 'edit' }, icons_1.edit),
+            react_1["default"].createElement("button", { className: 'edit', onClick: function () {
+                    startEdit();
+                    setID(id);
+                    openModal();
+                } }, icons_1.edit),
             react_1["default"].createElement("button", { className: 'delete', onClick: function () {
                     deleteTask(id);
                 } }, icons_1.trash))));
