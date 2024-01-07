@@ -115,6 +115,8 @@ export const GlobalProvider = ({ children }) => {
         finishEdit,
         ID,
         setID,
+        selectedTheme,
+        setSelectedTheme,
       }}
     >
       <GlobalUpdateContext.Provider value={{}}>

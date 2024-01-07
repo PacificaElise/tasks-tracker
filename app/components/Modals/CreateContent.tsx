@@ -49,8 +49,6 @@ function CreateContent() {
     }
   };
 
-  console.log(choosenTask.isCompleted);
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -176,7 +174,7 @@ const CreateContentStyled = styled.form`
     font-weight: 600;
   }
 
-  color: ${(props) => props.theme.colorGrey1};
+  color: ${(props) => props.theme.colorGrey0};
 
   .input-control {
     position: relative;
@@ -204,13 +202,14 @@ const CreateContentStyled = styled.form`
 
       resize: none;
       background-color: ${(props) => props.theme.colorGreyDark};
-      color: ${(props) => props.theme.colorGrey2};
+      color: ${(props) => props.theme.colorGrey0};
       border-radius: 0.5rem;
     }
   }
 
   .submit-btn button {
     transition: all 0.3s ease-in-out;
+    color: ${(props) => props.theme.colorGrey1} !important;
 
     @media screen and (max-width: 500px) {
       font-size: 0.9rem !important;
@@ -223,9 +222,13 @@ const CreateContentStyled = styled.form`
     }
 
     i {
-      color: ${(props) => props.theme.colorGrey0};
+      color: ${(props) => props.theme.colorGrey1} !important;
+      transition: all 0.3s ease-in-out;
     }
 
+    &:hover i {
+      color: ${(props) => props.theme.colorWhite} !important;
+    }
     &:hover {
       background: ${(props) => props.theme.colorPrimary2} !important;
       color: ${(props) => props.theme.colorWhite} !important;

@@ -13,13 +13,30 @@ interface Props {
 }
 
 const Tasks = ({ title, tasks }: Props) => {
-  const { theme, openModal, modal } = useGlobalState();
+  const { theme, openModal, modal, setSelectedTheme, selectedTheme } =
+    useGlobalState();
+
+  const switchTheme = () => {
+    // @ts-ignore
+    setSelectedTheme((selectedTheme) => (selectedTheme === 0 ? 1 : 0));
+  };
 
   return (
     <TaskStyled theme={theme}>
       {modal && <Modal content={<CreateContent />} />}
 
-      <h1>{title}</h1>
+      <div className='title flex justify-between'>
+        <h1>{title}</h1>
+        <p className='flex justify-between items-center gap-2 font-semibold text-xl'>
+          <label htmlFor='switch'>Switch Theme</label>
+          <input
+            type='checkbox'
+            onChange={switchTheme}
+            name='switch'
+            id='switch'
+          ></input>
+        </p>
+      </div>
 
       <div className='tasks grid'>
         {tasks.map((task) => (
@@ -45,6 +62,7 @@ const Tasks = ({ title, tasks }: Props) => {
 };
 
 const TaskStyled = styled.main`
+  color: ${(props) => props.theme.colorGrey2};
   position: relative;
   padding: 2rem;
   width: 100%;
@@ -87,7 +105,11 @@ const TaskStyled = styled.main`
     margin: 2rem 0;
   }
 
-  > h1 {
+  .title {
+    color: ${(props) => props.theme.colorGrey0};
+  }
+
+  .title h1 {
     font-size: clamp(1.5rem, 2vw, 2rem);
     font-weight: 800;
     position: relative;
@@ -124,8 +146,8 @@ const TaskStyled = styled.main`
     }
 
     &:hover {
-      background-color: ${(props) => props.theme.colorGrey5};
-      color: ${(props) => props.theme.colorGrey0};
+      background-color: ${(props) => props.theme.colorGrey4};
+      color: ${(props) => props.theme.colorGrey1};
     }
   }
 `;

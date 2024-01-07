@@ -82,6 +82,7 @@ const TaskItemStyled = styled.div`
   background-color: ${(props) => props.theme.borderColor2};
   box-shadow: ${(props) => props.theme.shadow7};
   border: 2px solid ${(props) => props.theme.borderColor2};
+  color: ${(props) => props.theme.colorGrey2};
 
   height: 16rem;
   display: flex;
@@ -123,6 +124,7 @@ const TaskItemStyled = styled.div`
       padding: 0.4rem 1rem;
       background: ${(props) => props.theme.colorDanger};
       border-radius: 30px;
+      color: ${(props) => props.theme.colorTextLight};
     }
 
     .completed {
