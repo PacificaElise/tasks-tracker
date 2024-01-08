@@ -21,7 +21,7 @@ const Sidebar = () => {
   const { firstName, lastName, imageUrl } = user || {
     firstName: '',
     lastName: '',
-    imageUrl: '/profile.jpg',
+    imageUrl: '',
   };
 
   const router = useRouter();
