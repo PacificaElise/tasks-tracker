@@ -50,7 +50,7 @@ var Button_1 = require("../Button/Button");
 var icons_1 = require("@/app/utils/icons");
 function CreateContent() {
     var _this = this;
-    var _a = globalProvider_1.useGlobalState(), tasks = _a.tasks, theme = _a.theme, allTasks = _a.allTasks, closeModal = _a.closeModal, edit = _a.edit, finishEdit = _a.finishEdit, updateTask = _a.updateTask, ID = _a.ID;
+    var _a = globalProvider_1.useGlobalState(), tasks = _a.tasks, theme = _a.theme, allTasks = _a.allTasks, closeModal = _a.closeModal, edit = _a.edit, finishEdit = _a.finishEdit, updateTask = _a.updateTask, ID = _a.ID, setID = _a.setID;
     // @ts-ignore
     var choosenTask = tasks.find(function (task) { return task.id === ID; });
     var _b = react_1.useState(choosenTask === null || choosenTask === void 0 ? void 0 : choosenTask.title), title = _b[0], setTitle = _b[1];
@@ -126,7 +126,9 @@ function CreateContent() {
                     error_1 = _a.sent();
                     react_hot_toast_1["default"].error('Something went wrong');
                     return [3 /*break*/, 5];
-                case 5: return [2 /*return*/];
+                case 5:
+                    setID(null);
+                    return [2 /*return*/];
             }
         });
     }); };

@@ -29,6 +29,7 @@ export const GlobalProvider = ({ children }) => {
 
   const closeModal = () => {
     setModal(false);
+    setID(null);
   };
 
   const startEdit = () => {

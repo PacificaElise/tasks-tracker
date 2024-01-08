@@ -17,9 +17,11 @@ function CreateContent() {
     finishEdit,
     updateTask,
     ID,
+    setID,
   } = useGlobalState();
+
   // @ts-ignore
-  const choosenTask = tasks.find((task) => task.id === ID);
+  const choosenTask = tasks.find((task: any) => task.id === ID);
 
   const [title, setTitle] = useState(choosenTask?.title);
   const [description, setDescription] = useState(choosenTask?.description);
@@ -91,6 +93,7 @@ function CreateContent() {
         toast.error('Something went wrong');
       }
     }
+    setID(null);
   };
 
   return (

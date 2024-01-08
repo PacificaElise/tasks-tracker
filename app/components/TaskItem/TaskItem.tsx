@@ -4,7 +4,6 @@ import { edit, trash } from '@/app/utils/icons';
 import React from 'react';
 import styled from 'styled-components';
 import formatDate from '@/app/utils/formatDate';
-import axios from 'axios';
 
 interface Props {
   title: string;
