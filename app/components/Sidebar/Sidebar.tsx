@@ -2,13 +2,13 @@
 
 import React from 'react';
 import styled from 'styled-components';
-import { useGlobalState } from '@/app/context/globalProvider';
+import { useGlobalState } from '../../context/globalProvider';
 import Image from 'next/image';
-import menu from '@/app/utils/menu';
+import menu from '../../utils/menu';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import Button from '../Button/Button';
-import { arrowLeft, bars, logout } from '@/app/utils/icons';
+import { arrowLeft, bars, logout } from '../../utils/icons';
 import { UserButton, useClerk, useUser } from '@clerk/nextjs';
 
 const Sidebar = () => {

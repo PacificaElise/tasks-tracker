@@ -1,6 +1,6 @@
 'use client';
-import Tasks from '@/app/components/Tasks/Tasks';
-import { useGlobalState } from '@/app/context/globalProvider';
+import Tasks from './components/Tasks/Tasks';
+import { useGlobalState } from './context/globalProvider';
 
 const Home = () => {
   const { tasks } = useGlobalState();

@@ -1,10 +1,10 @@
 'use client';
-import { useGlobalState } from '@/app/context/globalProvider';
+import { useGlobalState } from '../../context/globalProvider';
 import React from 'react';
 import styled from 'styled-components';
 import CreateContent from '../Modals/CreateContent';
 import TaskItem from '../TaskItem/TaskItem';
-import { add } from '@/app/utils/icons';
+import { add } from '../../utils/icons';
 import Modal from '../Modals/Modal';
 
 interface Props {
@@ -17,8 +17,7 @@ const Tasks = ({ title, tasks }: Props) => {
     useGlobalState();
 
   const switchTheme = () => {
-    // @ts-ignore
-    setSelectedTheme((selectedTheme) => (selectedTheme === 0 ? 1 : 0));
+    setSelectedTheme((selectedTheme: any) => (selectedTheme === 0 ? 1 : 0));
   };
 
   return (
