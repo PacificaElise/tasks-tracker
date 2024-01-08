@@ -6,7 +6,6 @@ import GlobalStylesProvider from './providers/GlobalStylesProvider';
 import ContextProvider from './providers/ContextProvider';
 import { ClerkProvider, auth } from '@clerk/nextjs';
 import NextTopLoader from 'nextjs-toploader';
-import styled from 'styled-components';
 
 const nunito = Nunito({
   weight: ['400', '500', '600', '700', '800'],
