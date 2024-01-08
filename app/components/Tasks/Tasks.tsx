@@ -28,13 +28,19 @@ const Tasks = ({ title, tasks }: Props) => {
       <div className='title flex justify-between'>
         <h1>{title}</h1>
         <p className='flex justify-between items-center gap-2 font-semibold text-xl'>
-          <label htmlFor='switch'>Switch Theme</label>
-          <input
-            type='checkbox'
-            onChange={switchTheme}
-            name='switch'
-            id='switch'
-          ></input>
+          <span>Switch Theme</span>
+          <label
+            htmlFor='switch'
+            className='switch'
+          >
+            <input
+              type='checkbox'
+              onChange={switchTheme}
+              name='switch'
+              id='switch'
+            />
+            <span className='slider'></span>
+          </label>
         </p>
       </div>
 
@@ -124,6 +130,57 @@ const TaskStyled = styled.main`
       background-color: ${(props) => props.theme.colorPrimaryGreen};
       border-radius: 0.5rem;
     }
+  }
+
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+
+  .switch input {
+    display: none;
+  }
+
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: 0.4s;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+
+  input:checked + .slider {
+    background: ${(props) => props.theme.colorGreenDark};
+  }
+
+  input:focus + .slider {
+    box-shadow: 0 0 1px ${(props) => props.theme.colorGreenDark};
+  }
+
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
   }
 
   .create-task {
