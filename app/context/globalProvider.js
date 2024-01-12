@@ -1,6 +1,6 @@
 'use client';
 
-import React, { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import themes from './themes';
 import axios from 'axios';
 import toast from 'react-hot-toast';
@@ -90,7 +90,7 @@ export const GlobalProvider = ({ children }) => {
   const importantTasks = tasks.filter((task) => task.isImportant === true);
   const incompleteTasks = tasks.filter((task) => task.isCompleted === false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (user) allTasks();
   }, [user]);
 
