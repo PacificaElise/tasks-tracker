@@ -107,10 +107,11 @@ const TaskStyled = styled.main`
   }
 
   .tasks {
-    margin: 2rem 0;
+    margin: 2rem auto;
   }
 
   .title {
+    margin: 0 auto;
     color: ${(props) => props.theme.colorGrey0};
   }
 

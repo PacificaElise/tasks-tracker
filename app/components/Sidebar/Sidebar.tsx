@@ -107,7 +107,7 @@ const SidebarStyled = styled.nav<{ collapsed: boolean }>`
 
   @media screen and (max-width: 768px) {
     position: fixed;
-    height: calc(100vh - 2rem);
+    height: calc(100dvh - 2rem);
     z-index: 100;
 
     transition: all 0.3s cubic-bezier(0.53, 0.21, 0, 1);
