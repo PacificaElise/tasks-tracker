@@ -53,7 +53,7 @@ const Sidebar = () => {
           />
         </div>
         <div className='user-btn absolute z-20 top-0 w-full h-full'>
-          <UserButton />
+          <UserButton afterSignOutUrl='/sign-in' />
         </div>
         <h1 className='capitalize'>
           {firstName} {lastName}
