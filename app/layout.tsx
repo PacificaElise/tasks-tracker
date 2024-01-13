@@ -6,6 +6,7 @@ import GlobalStylesProvider from './providers/GlobalStylesProvider';
 import ContextProvider from './providers/ContextProvider';
 import { ClerkProvider, auth } from '@clerk/nextjs';
 import NextTopLoader from 'nextjs-toploader';
+import { dark } from '@clerk/themes';
 
 const nunito = Nunito({
   weight: ['400', '500', '600', '700', '800'],
@@ -17,15 +18,19 @@ export const metadata: Metadata = {
   description: 'Tasks Manager App',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const { userId } = auth();
+  const { userId } = await auth();
 
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark,
+      }}
+    >
       <html lang='en'>
         <head>
           <link

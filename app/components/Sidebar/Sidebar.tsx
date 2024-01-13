@@ -18,10 +18,10 @@ const Sidebar = () => {
 
   const { user } = useUser();
 
-  const { firstName, lastName, imageUrl } = user || {
+  const { firstName, lastName, imageUrl, username } = user || {
     firstName: '',
     lastName: '',
-    imageUrl: '',
+    imageUrl: '/profile.jpg',
   };
 
   const router = useRouter();
@@ -56,7 +56,7 @@ const Sidebar = () => {
           <UserButton afterSignOutUrl='/sign-in' />
         </div>
         <h1 className='capitalize'>
-          {firstName} {lastName}
+          {firstName || username} {lastName}
         </h1>
       </div>
       <ul className='nav-items'>

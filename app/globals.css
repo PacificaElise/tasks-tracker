@@ -62,10 +62,6 @@ input[type='checkbox'] {
   }
 }
 
-.cl-internal-b3fm6y {
-  display: none;
-}
-
 .cl-formButtonPrimary,
 .cl-internal-1fsg6zy {
   background-color: #27ae60;
@@ -74,4 +70,13 @@ input[type='checkbox'] {
 .cl-formButtonPrimary:hover,
 .cl-internal-1fsg6zy:hover {
   background-color: #6fcf97;
+}
+
+.cl-card {
+  background-color: #242424;
+}
+
+.cl-footerActionLink {
+  color: rgba(255, 255, 255, 0.65);
+  text-decoration: underline;
 }
