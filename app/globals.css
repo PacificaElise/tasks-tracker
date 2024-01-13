@@ -66,9 +66,12 @@ input[type='checkbox'] {
   display: none;
 }
 
-.cl-formButtonPrimary {
-  background-color: #27ae60;
-}
+.cl-formButtonPrimary,
 .cl-internal-1fsg6zy {
   background-color: #27ae60;
+}
+
+.cl-formButtonPrimary:hover,
+.cl-internal-1fsg6zy:hover {
+  background-color: #6fcf97;
 }
